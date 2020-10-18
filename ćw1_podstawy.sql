@@ -1,93 +1,93 @@
 use Northwind
 
 
--- Wybór kolumn - æwiczenia
+-- WybÃ³r kolumn - Ä‡wiczenia
 
 
--- 1. Wybierz nazwy i adresy wszystkich klientów
+-- 1. Wybierz nazwy i adresy wszystkich klientÃ³w
 select CompanyName, FullAddress = (Address + ', ' + City + ', ' + PostalCode) from Customers
 
--- 2. Wybierz nazwiska i numery telefonów pracowników
+-- 2. Wybierz nazwiska i numery telefonÃ³w pracownikÃ³w
 select LastName, HomePhone from Employees
 
--- 3. Wybierz nazwy i ceny produktów
+-- 3. Wybierz nazwy i ceny produktÃ³w
 select ProductName, UnitPrice from Products
 
--- 4. Poka¿ nazwy i opisy wszystkich kategorii produktów
+-- 4. PokaÅ¼ nazwy i opisy wszystkich kategorii produktÃ³w
 select CategoryName, Description from Categories
 
--- 5. Poka¿ nazwy i adresy stron www dostawców
+-- 5. PokaÅ¼ nazwy i adresy stron www dostawcÃ³w
 select CompanyName,HomePage from Suppliers
 
 
 
--- Wybór wierszy - æwiczenia
+-- WybÃ³r wierszy - Ä‡wiczenia
 
 
--- 1. Wybierz nazwy i adresy wszystkich klientów maj¹cych siedziby w Londynie
+-- 1. Wybierz nazwy i adresy wszystkich klientÃ³w majÄ…cych siedziby w Londynie
 select CompanyName, FullAddress = (Address + ', ' + City + ', ' + PostalCode) 
 from Customers 
 where City = 'London'
 
--- 2. Wybierz nazwy i adresy wszystkich klientów maj¹cych siedziby we Francji lub w Hiszpanii
+-- 2. Wybierz nazwy i adresy wszystkich klientÃ³w majÄ…cych siedziby we Francji lub Hiszpanii
 select CompanyName, FullAddress = (Address + ', ' + City + ', ' + PostalCode) 
 from Customers 
 where Country = 'France' or Country = 'Spain'
 
--- 3. Wybierz nazwy i ceny produktów o cenie jednostkowej pomiêdzy 20 a 30
+-- 3. Wybierz nazwy i ceny produktÃ³w o cenie jednostkowej pomiÄ™dzy 20 a 30
 select ProductName, UnitPrice from Products
 where UnitPrice < 30 and UnitPrice > 20
 
--- 4. Wybierz nazwy i ceny produktów z kategorii ‘meat’
+-- 4. Wybierz nazwy i ceny produktÃ³w z kategorii â€˜meatâ€™
 select CategoryID from Categories
 where CategoryName like 'Meat%'
 
 select ProductName, UnitPrice from Products
 where CategoryID = 6
 
--- 5. Wybierz nazwy produktów oraz inf. o stanie magazynu dla produktów dostarczanych przez firmê ‘Tokyo Traders’
+-- 5. Wybierz nazwy produktÃ³w oraz inf. o stanie magazynu dla produktÃ³w dostarczanych przez firmÄ™ â€˜Tokyo Tradersâ€™
 select SupplierID from Suppliers
 where CompanyName like 'Tokyo Traders'
 
 select ProductName, UnitsInStock from Products
 where SupplierID = 4
 
--- 6. Wybierz nazwy produktów których nie ma w magazynie
+-- 6. Wybierz nazwy produktÃ³w ktÃ³rych nie ma w magazynie
 select ProductName from Products
 where UnitsInStock = 0 
 -- co z wycofanymi?
 
 
 
---Porównywanie napisów (stringów) - æwiczenia
+--PorÃ³wnywanie napisÃ³w (stringÃ³w) - Ä‡wiczenia
 
 
---1. Szukamy informacji o produktach sprzedawanych w butelkach (‘bottle’)
+--1. Szukamy informacji o produktach sprzedawanych w butelkach (â€˜bottleâ€™)
 select * from products
 where QuantityPerUnit like '%bottle%'
 
---2. Wyszukaj informacje o stanowisku pracowników, których nazwiska zaczynaj¹ siê na literê z zakresu od B do L
+--2. Wyszukaj informacje o stanowisku pracownikÃ³w, ktÃ³rych nazwiska zaczynajÄ… siÄ™ na literÄ™ z zakresu od B do L
 select LastName,Title from Employees
 where LastName like '[B-L]%'
 
---3. Wyszukaj informacje o stanowisku pracowników, których nazwiska zaczynaj¹ siê na literê B lub L
+--3. Wyszukaj informacje o stanowisku pracownikÃ³w, ktÃ³rych nazwiska zaczynajÄ… siÄ™ na literÄ™ B lub L
 select LastName,Title from Employees
 where LastName like '[BL]%'
 
--- 4.  ZnajdŸ nazwy kategorii, które w opisie zawieraj¹ przecinek
+-- 4.  ZnajdÅº nazwy kategorii, ktÃ³re w opisie zawierajÄ… przecinek
 select CategoryName from Categories
 where Description like '%,%'
 
--- 5. ZnajdŸ klientów, którzy w swojej nazwie maj¹ w którymœ miejscu s³owo ‘Store’ 
+-- 5. ZnajdÅº klientÃ³w, ktÃ³rzy w swojej nazwie majÄ… w ktÃ³rymÅ› miejscu sÅ‚owo â€˜Storeâ€™ 
 select * from Customers
 where CompanyName like '%Store%'
 
 
 
--- Zakres wartoœci - æwiczenia
+-- Zakres wartoÅ›ci - Ä‡wiczenia
 
 
---1. Szukamy informacji o produktach o cenach mniejszych ni¿ 10 lub wiêkszych ni¿ 20
+--1. Szukamy informacji o produktach o cenach mniejszych niÅ¼ 10 lub wiÄ™kszych niÅ¼ 20
 select * from Products
 where UnitPrice < 10 or UnitPrice > 20 
 
@@ -95,49 +95,49 @@ where UnitPrice < 10 or UnitPrice > 20
 select * from Products 
 where UnitPrice not between 10 and 20
 
--- 2. Wybierz nazwy i ceny produktów o cenie jednostkowej pomiêdzy 20.00 a 30.00
+-- 2. Wybierz nazwy i ceny produktÃ³w o cenie jednostkowej pomiÄ™dzy 20.00 a 30.00
 select ProductName, UnitPrice from Products
 where UnitPrice between 20.00 and 30.00
 
 
 
--- Warunki logiczne - æwiczenie
+-- Warunki logiczne - Ä‡wiczenie
 
 
---1. Wybierz nazwy i kraje wszystkich klientów maj¹cych siedziby w Japonii (Japan) lub we W³oszech (Italy)
+--1. Wybierz nazwy i kraje wszystkich klientÃ³w majÄ…cych siedziby w Japonii (Japan) lub we WÅ‚oszech (Italy)
 select CompanyName, Country from Customers
 where Country like 'Japan' or Country like 'Italy'
 
 
 
--- wartoœci NULL - æwiczenie
+-- wartoÅ›ci NULL - Ä‡wiczenie
 
 
--- 1. Napisz instrukcjê select tak aby wybraæ numer zlecenia, datê zamówienia, numer klienta dla wszystkich
---	  niezrealizowanych jeszcze zleceñ, dla których krajem odbiorcy jest Argentyna
+-- 1. Napisz instrukcjÄ™ select tak aby wybraÄ‡ numer zlecenia, datÄ™ zamÃ³wienia, numer klienta dla wszystkich
+--	  niezrealizowanych jeszcze zleceÅ„, dla ktÃ³rych krajem odbiorcy jest Argentyna
 
 select OrderID, OrderDate, CustomerID from Orders
 where ShippedDate is NULL and ShipCountry like 'Argentina'
 
 
 
---- Sortowanie danych - æwiczenia
+--- Sortowanie danych - Ä‡wiczenia
 
 
--- 1. Wybierz nazwy i kraje wszystkich klientów, wyniki posortuj wed³ug kraju, w ramach danego kraju nazwy firm posortuj alfabetycznie
+-- 1. Wybierz nazwy i kraje wszystkich klientÃ³w, wyniki posortuj wedÅ‚ug kraju, w ramach danego kraju nazwy firm posortuj alfabetycznie
 
 select CompanyName, Country from Customers 
 order by Country, CompanyName
 --albo order by 2,1
 
 
--- 2. Wybierz informacjê o produktach (grupa, nazwa, cena), produkty posortuj wg grup a w grupach malej¹co wg ceny
+-- 2. Wybierz informacjÄ™ o produktach (grupa, nazwa, cena), produkty posortuj wg grup a w grupach malejÄ…co wg ceny
 
 select CategoryID, ProductName, UnitPrice  from  Products
 order by CategoryID, UnitPrice desc
 
--- 3. Wybierz nazwy i kraje wszystkich klientów maj¹cych siedziby w Wielkiej Brytanii (UK) 
---    lub we W³oszech (Italy), wyniki posortuj tak jak w pkt 1
+-- 3. Wybierz nazwy i kraje wszystkich klientÃ³w majÄ…cych siedziby w Wielkiej Brytanii (UK) 
+--    lub we WÅ‚oszech (Italy), wyniki posortuj tak jak w pkt 1
 
 select CompanyName, Country from Customers
 where Country like 'UK' or Country like 'Italy'
