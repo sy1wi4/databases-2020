@@ -1,7 +1,7 @@
--- Æwiczenie 1
+-- Ã†wiczenie 1
 
--- 1. Dla ka¿dego zamówienia podaj ³¹czn¹ liczbê zamówionych jednostek
--- oraz nazwê klienta.
+-- 1. Dla kaÅ¼dego zamÃ³wienia podaj Â³Â¹cznÂ¹ liczbÃª zamÃ³wionych jednostek
+-- oraz nazwÃª klienta.
 
 use Northwind
 select o.OrderID, sum(od.Quantity) as 'qty', c.CompanyName
@@ -13,8 +13,8 @@ on c.CustomerID = o.CustomerID
 group by o.OrderID, c.CompanyName
 
 
--- 2. Zmodyfikuj poprzedni przyk³ad, aby pokazaæ tylko takie zamówienia,
--- dla których ³¹czna liczbê zamówionych jednostek jest wiêksza ni¿ 250.
+-- 2. Zmodyfikuj poprzedni przykÂ³ad, aby pokazaÃ¦ tylko takie zamÃ³wienia,
+-- dla ktÃ³rych Â³Â¹czna liczbÃª zamÃ³wionych jednostek jest wiÃªksza niÂ¿ 250.
 
 select o.OrderID, sum(od.Quantity) as 'qty', c.CompanyName
 from Orders o
@@ -26,8 +26,8 @@ group by o.OrderID, c.CompanyName
 having sum(od.Quantity) > 250
 
 
--- 3. Dla ka¿dego zamówienia podaj ³¹czn¹ wartoœæ tego zamówienia oraz
--- nazwê klienta.
+-- 3. Dla kaÂ¿dego zamÃ³wienia podaj Â³Â¹cznÂ¹ wartoÅ“Ã¦ tego zamÃ³wienia oraz
+-- nazwÃª klienta.
 select o.OrderID, round(sum(quantity*unitprice*(1-discount)), 2) as 'value', c.CompanyName
 from Orders o
 inner join [Order Details] od
@@ -37,8 +37,8 @@ on c.CustomerID = o.CustomerID
 group by o.OrderID, c.CompanyName
 
 
--- 4. Zmodyfikuj poprzedni przyk³ad, aby pokazaæ tylko takie zamówienia,
--- dla których ³¹czna liczba jednostek jest wiêksza ni¿ 250.
+-- 4. Zmodyfikuj poprzedni przykÂ³ad, aby pokazaÃ¦ tylko takie zamÃ³wienia,
+-- dla ktÃ³rych Â³Â¹czna liczba jednostek jest wiÃªksza niÂ¿ 250.
 
 select o.OrderID, round(sum(quantity*unitprice*(1-discount)), 2) as value, c.CompanyName
 from Orders o
@@ -50,8 +50,8 @@ group by o.OrderID, c.CompanyName
 having sum(Quantity) > 250
 
 
--- 5. Zmodyfikuj poprzedni przyk³ad tak ¿eby dodaæ jeszcze imiê i
--- nazwisko pracownika obs³uguj¹cego zamówienie
+-- 5. Zmodyfikuj poprzedni przykÂ³ad tak Â¿eby dodaÃ¦ jeszcze imiÃª i
+-- nazwisko pracownika obsÂ³ugujÂ¹cego zamÃ³wienie
 
 select o.OrderID, round(sum(quantity*unitprice*(1-discount)), 2) as value, 
        c.CompanyName, e.FirstName +' '+ e.LastName as 'employee name'
@@ -67,12 +67,12 @@ having sum(Quantity) > 250
 
 
 
--- Æwiczenie 2
+-- Ã†wiczenie 2
 
--- 1. Dla ka¿dej kategorii produktu (nazwa), podaj ³¹czn¹ liczbê
--- zamówionych przez klientów jednostek towarów.
+-- 1. Dla kaÂ¿dej kategorii produktu (nazwa), podaj Â³Â¹cznÂ¹ liczbÃª
+-- zamÃ³wionych przez klientÃ³w jednostek towarÃ³w.
 
--- przez wszystkich klientów? to tak:
+-- przez wszystkich klientÃ³w? to tak:
 use Northwind 
 select c.CategoryName, sum(od.Quantity) as 'qty' 
 from Categories c
@@ -82,7 +82,7 @@ inner join [Order Details] od
 on od.ProductID = p.ProductID
 group by c.CategoryName
 
--- czy dla ka¿dego klienta osobno? wtedy tak:
+-- czy dla kaÂ¿dego klienta osobno? wtedy tak:
 select c.CategoryName, o.CustomerID, sum(od.Quantity) as 'qty' 
 from Categories c
 inner join Products p
@@ -94,8 +94,8 @@ on o.OrderID = od.OrderID
 group by c.CategoryName, o.CustomerID
 
 
--- 2. Dla ka¿dej kategorii produktu (nazwa), podaj ³¹czn¹ wartoœæ
--- zamówieñ
+-- 2. Dla kaÂ¿dej kategorii produktu (nazwa), podaj Â³Â¹cznÂ¹ wartoÅ“Ã¦
+-- zamÃ³wieÃ±
 
 select c.CategoryName, round(sum(od.quantity*od.unitprice*(1-od.discount)), 2) as 'value'
 from Categories c
@@ -108,7 +108,7 @@ group by c.CategoryName
 
 -- 3. Posortuj wyniki w zapytaniu z punktu 2 wg:
 
--- a. ³¹cznej wartoœci zamówieñ
+-- a. Â³Â¹cznej wartoÅ“ci zamÃ³wieÃ±
 select c.CategoryName, round(sum(od.quantity*od.unitprice*(1-od.discount)), 2) as 'value'
 from Categories c
 inner join Products p
@@ -118,7 +118,7 @@ on od.ProductID = p.ProductID
 group by c.CategoryName
 order by value 
 
--- b. ³¹cznej liczby zamówionych przez klientów jednostek towarów
+-- b. Â³Â¹cznej liczby zamÃ³wionych przez klientÃ³w jednostek towarÃ³w
 select c.CategoryName, round(sum(od.quantity*od.unitprice*(1-od.discount)), 2) as 'value',
        sum(quantity) as 'qty'
 from Categories c
@@ -131,10 +131,10 @@ order by sum(quantity)
 
 
 
--- Æwiczenie 3
+-- Ã†wiczenie 3
 
--- 1. Dla ka¿dego przewoŸnika (nazwa) podaj liczbê zamówieñ, które
--- przewieŸli w 1997r
+-- 1. Dla kaÂ¿dego przewoÅ¸nika (nazwa) podaj liczbÃª zamÃ³wieÃ±, ktÃ³re
+-- przewieÅ¸li w 1997r
 
 select s.CompanyName, count(*) as 'orders'
 from Shippers s
@@ -144,8 +144,8 @@ where YEAR(shippedDate) = '1997'
 group by s.CompanyName
 
 
--- 2. Który z przewoŸników by³ najaktywniejszy (przewióz³ najwiêksz¹
--- liczbê zamówieñ) w 1997r, podaj nazwê tego przewoŸnika
+-- 2. KtÃ³ry z przewoÅ¸nikÃ³w byÂ³ najaktywniejszy (przewiÃ³zÂ³ najwiÃªkszÂ¹
+-- liczbÃª zamÃ³wieÃ±) w 1997r, podaj nazwÃª tego przewoÅ¸nika
 select top 1 s.CompanyName, count(*) as 'orders'
 from Shippers s
 inner join Orders o
@@ -155,8 +155,8 @@ group by s.CompanyName
 order by count(*) desc
 
 
--- 3. Który z pracowników obs³u¿y³ najwiêksz¹ liczbê zamówieñ w 1997r,
--- podaj imiê i nazwisko takiego pracownika
+-- 3. KtÃ³ry z pracownikÃ³w obsÂ³uÂ¿yÂ³ najwiÃªkszÂ¹ liczbÃª zamÃ³wieÃ± w 1997r,
+-- podaj imiÃª i nazwisko takiego pracownika
 
 select top 1 e.FirstName, e.LastName, count(*) as orders
 from Orders o 
@@ -168,10 +168,10 @@ order by count(*) desc
 
 
 
--- Æwiczenie 4
+-- Ã†wiczenie 4
 
--- 1. Dla ka¿dego pracownika (imiê i nazwisko) podaj ³¹czn¹ wartoœæ
--- zamówieñ obs³u¿onych przez tego pracownika
+-- 1. Dla kaÂ¿dego pracownika (imiÃª i nazwisko) podaj Â³Â¹cznÂ¹ wartoÅ“Ã¦
+-- zamÃ³wieÃ± obsÂ³uÂ¿onych przez tego pracownika
 
 select e.FirstName, e.LastName, 
        round(sum(od.quantity*od.unitprice*(1-od.discount)), 2) as 'value'
@@ -183,8 +183,8 @@ on od.OrderID = o.OrderID
 group by e.EmployeeID, e.FirstName, e.LastName
 
 
--- 2. Który z pracowników obs³u¿y³ (by³?) najaktywniejszy (obs³u¿y³ zamówienia
--- o najwiêkszej wartoœci) w 1997r, podaj imiê i nazwisko takiego
+-- 2. KtÃ³ry z pracownikÃ³w obsÂ³uÂ¿yÂ³ (byÂ³?) najaktywniejszy (obsÂ³uÂ¿yÂ³ zamÃ³wienia
+-- o najwiÃªkszej wartoÅ“ci) w 1997r, podaj imiÃª i nazwisko takiego
 --  pracownika
 
 select top 1 e.FirstName, e.LastName, 
@@ -199,14 +199,14 @@ group by e.EmployeeID, e.FirstName, e.LastName
 order by 3 desc
 
 
--- 3. Ogranicz wynik z pkt 1 tylko do pracowników:
+-- 3. Ogranicz wynik z pkt 1 tylko do pracownikÃ³w:
 
---a. którzy maj¹ podw³adnych
+--a. ktÃ³rzy majÂ¹ podwÂ³adnych
 
 select e1.FirstName, e1.LastName, 
        round(sum(od.quantity*od.unitprice*(1-od.discount)), 2) as 'value'
 from Employees e1
-inner join Employees e2   -- podw³adny
+inner join Employees e2   -- podwÂ³adny
 on e1.EmployeeID = e2.ReportsTo
 inner join Orders o
 on o.EmployeeID = e1.EmployeeID
@@ -215,7 +215,7 @@ on od.OrderID = o.OrderID
 group by e1.EmployeeID, e1.FirstName, e1.LastName
 
 /*
-pracownicy maj¹cy podw³adnych (self join):
+pracownicy majÂ¹cy podwÂ³adnych (self join):
 
 select a.FirstName+' '+a.LastName as 'head', b.FirstName+' '+b.LastName as 'emp' 
 from Employees a
@@ -223,12 +223,12 @@ inner join Employees b
 on a.EmployeeID = b.ReportsTo
 */
 
--- b. którzy nie maj¹ podw³adnych
+-- b. ktÃ³rzy nie majÂ¹ podwÂ³adnych
 
 select e1.FirstName, e1.LastName, 
        round(sum(od.quantity*od.unitprice*(1-od.discount)), 2) as 'value'
 from Employees e1
-left outer join Employees e2   -- podw³adny
+left outer join Employees e2   -- podwÂ³adny
 on e1.EmployeeID = e2.ReportsTo
 inner join Orders o
 on o.EmployeeID = e1.EmployeeID
@@ -238,7 +238,7 @@ where e2.ReportsTo is null
 group by e1.EmployeeID, e1.FirstName, e1.LastName
 
 /*
-pracownicy nie maj¹cy podw³adnych (self join):
+pracownicy nie majÂ¹cy podwÂ³adnych (self join):
 
 select a.FirstName+' '+a.LastName as 'emp'
 from Employees a
