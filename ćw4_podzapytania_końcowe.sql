@@ -98,3 +98,59 @@ select ProductID, ProductName, unitprice, CategoryID
 from Products p1
 	where UnitPrice < (select avg(unitprice) from Products p2
 	where p2.CategoryID = p1.CategoryID)
+		
+		
+-- Ćwiczenie 3. 
+
+-- 1) Dla każdego produktu podaj jego nazwę, cenę, średnią cenę
+-- wszystkich produktów oraz różnicę między ceną produktu a
+-- średnią ceną wszystkich produktów
+select ProductName, UnitPrice, (select avg(UnitPrice) from  Products) as avgPrice,
+	UnitPrice - (select avg(UnitPrice) from  Products p2) as diff
+from Products
+
+
+-- 2) Dla każdego produktu podaj jego nazwę kategorii, nazwę produktu,
+-- cenę, średnią cenę wszystkich produktów danej kategorii oraz
+-- różnicę między ceną produktu a średnią ceną wszystkich
+-- produktów danej kategorii
+select ProductName, UnitPrice, 
+	(select CategoryName from Categories c where c.CategoryID = p2.CategoryID) as 'CategoryName',
+	(select avg(UnitPrice) from Products p1 where p1.CategoryID = p2.CategoryID) as 'AvgCatPrice',
+ 	(UnitPrice - (select avg(UnitPrice) from Products p1 where p1.CategoryID = p2.CategoryID)) as 'Diff'
+from Products p2
+
+
+
+-- Ćwiczenie 4.
+
+-- 1) Podaj łączną wartość zamówienia o numerze 10250 (uwzględnij
+-- cenę za przesyłkę)
+
+select round(((select sum(UnitPrice*Quantity*(1-Discount)) from [Order Details] od
+	where od.OrderID = o.OrderID) + Freight), 2) as 'value'
+from Orders o
+where OrderID = 10250
+
+
+-- 2)  Podaj łączną wartość zamówień każdego zamówienia (uwzględnij
+-- cenę za przesyłkę)
+select OrderID, round(((select sum(UnitPrice*Quantity*(1-Discount)) from [Order Details] od
+	where od.OrderID = o.OrderID) + Freight), 2) as 'value'
+from Orders o
+
+
+-- 3) Czy są jacyś klienci którzy nie złożyli żadnego zamówienia w 1997
+-- roku, jeśli tak to pokaż ich dane adresowe
+
+-- join
+select c.CompanyName,  Address + ' ' + City as address
+from customers c
+left outer join orders o
+on o.CustomerID = c.CustomerID and YEAR(orderdate) = 1997
+where orderdate is null
+
+-- podzapytanie
+select CompanyName, Address + ' ' + City as address
+from customers c
+where not exists (select * from Orders o where o.CustomerID = c.CustomerID and YEAR(orderdate) = 1997)
